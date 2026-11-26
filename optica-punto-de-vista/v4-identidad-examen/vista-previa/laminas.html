@@ -1,0 +1,58 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Rokkitt:wght@700;800&family=Atkinson+Hyperlegible+Next:wght@400;600;800&display=block" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#777;font-family:'Atkinson Hyperlegible Next',sans-serif;color:#12205C;-webkit-font-smoothing:antialiased}
+.sheet{background:#E6E9EC;padding:60px 64px 54px;margin:20px;width:1600px}
+.top{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:3px solid #12205C;padding-bottom:22px;margin-bottom:34px}
+h1{font:800 64px/1 Rokkitt,serif}
+.sub{font:400 22px/1.35 'Atkinson Hyperlegible Next';color:#5E6680;margin-top:12px;max-width:900px}
+.top img{height:96px}
+.g{display:grid;gap:30px}
+.g img{width:100%;display:block;box-shadow:0 12px 30px rgba(18,32,92,.18)}
+.g p{font:800 19px/1.25 'Atkinson Hyperlegible Next';margin-top:14px}
+.g p span{display:block;font-weight:400;font-size:16px;color:#5E6680;margin-top:4px}
+.num{font-family:Rokkitt,serif;font-size:1.04em;letter-spacing:0;font-variant-numeric:proportional-nums}
+.f{margin-top:34px;border-top:4px solid #1C9A50;padding-top:18px;display:flex;justify-content:space-between;font:600 18px 'Atkinson Hyperlegible Next'}
+</style></head><body>
+<div class="sheet" id="posts">
+  <div class="top"><div><h1>Posts de Instagram</h1><div class="sub">Todo sale del examen de la vista: la cartilla, la receta, la ficha y los lentes de prueba. Formato 1080 × 1350.</div></div><img src="../assets/logo.png"></div>
+  <div class="g" style="grid-template-columns:repeat(3,1fr)">
+    <div><img src="../piezas/post-1-duo-de-sol.png"><p>Dúo de Sol<span>La pregunta del examen, «¿el 1 o el 2?», con la oferta: llévate los dos.</span></p></div>
+    <div><img src="../piezas/post-2-precio-cerrado.png"><p>Precio Cerrado<span>Una receta con la graduación incluida y el total encerrado en rojo.</span></p></div>
+    <div><img src="../piezas/post-3-modo-pantalla.png"><p>Modo Pantalla<span>La regla 20-20-20 en filas de cartilla y los lentes con filtro azul.</span></p></div>
+    <div><img src="../piezas/post-4-examen-visual.png"><p>Examen visual<span>Una cartilla que se lee. La «P» del logo es la primera letra.</span></p></div>
+    <div><img src="../piezas/post-5-humor-celular.png"><p>Humor<span>Cartilla de lectura de cerca: la última línea obliga a alejar el celular.</span></p></div>
+    <div><img src="../piezas/post-6-coronel-se-ve-mejor.png"><p>Coronel se ve mejor<span>El local visto a través de un lente de prueba. Para fijar en el perfil.</span></p></div>
+  </div>
+  <div class="f"><span>Óptica Punto de Vista</span><span>Manuel Montt 143 y 460, Coronel</span></div>
+</div>
+<div class="sheet" id="estados">
+  <div class="top"><div><h1>Estados de WhatsApp e historias</h1><div class="sub">Formato vertical 1080 × 1920. Cada uno pide una respuesta concreta para que la conversación siga por WhatsApp.</div></div><img src="../assets/logo.png"></div>
+  <div class="g" style="grid-template-columns:repeat(5,1fr);gap:26px">
+    <div><img src="../piezas/estado-1-duo-de-sol.png"><p>Dúo de Sol<span>«Responde con 1, 2 o LOS DOS».</span></p></div>
+    <div><img src="../piezas/estado-2-te-pasa-esto.png"><p>¿Te pasa esto?<span>Una ficha de consulta para marcar.</span></p></div>
+    <div><img src="../piezas/estado-3-precio-cerrado.png"><p>Precio Cerrado<span>La receta en vertical.</span></p></div>
+    <div><img src="../piezas/estado-4-regala-sol-navidad.png"><p>Regala Sol<span>Cartilla navideña, con su línea roja y su línea verde.</span></p></div>
+    <div><img src="../piezas/estado-5-encuentranos.png"><p>Encuéntranos<span>La fachada a través del lente.</span></p></div>
+  </div>
+  <div class="f"><span>Óptica Punto de Vista</span><span>Manuel Montt 143 y 460, Coronel</span></div>
+</div>
+<script>
+// Los números siempre en Rokkitt (la Atkinson tacha el cero: «$19.9ØØ»)
+(function(){
+  const re=/[$±−+]?\d[\d.,\-]*\d|[$±−+]?\d/g;
+  const walk=n=>{
+    if(n.nodeType===3){
+      const p=n.parentElement; if(!p||p.closest('.slab,.row,.rn,.rx-val,.lens,svg,.num,.nonum')) return;
+      if(!re.test(n.nodeValue)) return; re.lastIndex=0;
+      const f=document.createDocumentFragment(); let last=0, m;
+      while((m=re.exec(n.nodeValue))){ f.append(n.nodeValue.slice(last,m.index)); const s=document.createElement('span'); s.className='num'; s.textContent=m[0]; s.style.fontWeight=(parseInt(getComputedStyle(p).fontWeight)>=700)?'800':'600'; f.append(s); last=m.index+m[0].length; }
+      f.append(n.nodeValue.slice(last)); n.replaceWith(f); return;
+    }
+    [...n.childNodes].forEach(walk);
+  };
+  walk(document.body);
+})();
+</script>
+</body></html>
